@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Babel Crusher",
+  "version": "0.1.0",
+  "description": "notranslateを除去し、必要ならGoogle翻訳プロキシで開く",
+  "permissions": ["scripting", "tabs", "contextMenus"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Open via Google Translate" },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "commands": {
+    "open-via-gt": {
+      "suggested_key": { "default": "Alt+T" },
+      "description": "Open current tab via Google Translate proxy"
+    }
+  }
+}
